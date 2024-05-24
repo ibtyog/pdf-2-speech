@@ -1,5 +1,5 @@
-import PyPDF2
-
+import PyPDF2, os
+from gtts import gTTS
 
 #file_path = input("Please provide file path:")
 file_path = 'sample.pdf'
@@ -13,3 +13,7 @@ for i in range(0,no_pages):
     whole_text += f'Page {i+1}\n'
     whole_text += f'{reader.pages[i].extract_text(0)}\n'.replace('\n',' ')
 print(whole_text)
+
+audio = gTTS(text=whole_text,lang='en',slow=False)
+audio.save('audio.mp3')
+os.system('start audio.mp3')
